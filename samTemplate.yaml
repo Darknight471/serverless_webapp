@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for deploying all lambdas
+Resources:
+  PythonLambdaPost:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: python_lambda/myapp_post_data.py
+      Handler: myapp_post_data.lambda_handler
+      Role: 'arn:aws:iam::498524607267:role/assignment_lambda@role'
+      Runtime: python3.8
+      Timeout: 3
+      MemorySize: 512
+  PythonLambdaGet:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: python_lambda/myapp_get_data.py
+      Handler: myapp_get_data.lambda_handler
+      Role: 'arn:aws:iam::498524607267:role/assignment_lambda@role'
+      Runtime: python3.8
+      Timeout: 3
+      MemorySize: 512
+  PythonLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: /
+      Policies:
+      - PolicyName: LambdaPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogStream
+            - logs:CreateLogGroup
+            - logs:PutLogEvents
+            Resource: '*'
