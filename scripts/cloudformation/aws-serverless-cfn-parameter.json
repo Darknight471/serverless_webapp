@@ -1,0 +1,6 @@
+{
+  "Parameters": {
+    "Author": "sameed",
+    "LambdaRoleArn": "arn:aws:iam::498524607267:role/assignment_lambda@role"
+  }
+}
