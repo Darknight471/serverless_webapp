@@ -5,7 +5,7 @@ Resources:
   PythonLambdaPost:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: python_lambda/myapp_post_data.py
+      CodeUri: ./python_lambda/post_data
       Handler: myapp_post_data.lambda_handler
       Role: 'arn:aws:iam::498524607267:role/assignment_lambda@role'
       Runtime: python3.8
@@ -14,7 +14,7 @@ Resources:
   PythonLambdaGet:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: python_lambda/myapp_get_data.py
+      CodeUri: ./python_lambda/get_data
       Handler: myapp_get_data.lambda_handler
       Role: 'arn:aws:iam::498524607267:role/assignment_lambda@role'
       Runtime: python3.8
